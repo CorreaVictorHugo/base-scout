@@ -1,0 +1,44 @@
+Pasta raiz do projeto:
+node_modules
+public
+src
+.gitignore
+eslint.config.js
+index.html
+package-lock.json
+package.json
+README.md
+vite.config.js
+
+A pasta mais importante para nós agora é:
+
+src
+
+Ela é onde fica o código principal do aplicativo React.
+
+Dentro de src, normalmente existem estes arquivos:
+
+App.jsx
+App.css
+index.css
+main.jsx
+assets
+
+Explicação simples
+
+main.jsx
+É o ponto de entrada do React. Ele pega o aplicativo e coloca dentro da página HTML.
+
+App.jsx
+É o componente principal do aplicativo. Vamos mexer bastante nele no começo.
+
+App.css
+É o arquivo de estilos específico do componente App.
+
+index.css
+É o arquivo de estilos globais do projeto.
+
+assets
+É uma pasta para imagens e outros arquivos usados no app.
+
+Próximo passo: abrir o arquivo principal

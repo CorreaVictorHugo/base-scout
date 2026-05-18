@@ -1,0 +1,43 @@
+Estado Atual Do Projeto
+
+Até agora:
+
+- O projeto React foi criado
+- O Vite iniciou o servidor local
+- O aplicativo está acessível no navegador
+- Ainda estamos vendo a tela padrão inicial do React/Vite
+
+- Projeto React criado
+- Dependências instaladas
+- Servidor local funcionando
+- Primeira tela personalizada criada
+- Layout inicial do sistema pronto
+
+- Projeto React funcionando
+- Tela administrativa inicial
+- Lista de atletas fictícios
+- Contador total de atletas
+- Tabela organizada
+- Estilo visual aplicado
+
+- App funcionando no PC e celular
+- Busca por nome funcionando
+- Filtro por categoria funcionando
+- Botão abre e fecha formulário
+- Formulário em uma coluna
+- Layout mais adequado para celular
+
+15/05
+
+1. Criar/configurar o projeto no Supabase
+2. Criar tabelas no banco
+3. Criar buckets para fotos e documentos
+4. Configurar as chaves no app React
+5. Instalar o cliente Supabase
+6. Salvar atletas no banco
+7. Buscar atletas do banco
+8. Editar/excluir atletas no banco
+9. Fazer upload de fotos
+10. Fazer upload de documentos
+11. Depois ativar autenticação
+

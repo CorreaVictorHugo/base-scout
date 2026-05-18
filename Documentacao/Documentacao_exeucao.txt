@@ -1,0 +1,23 @@
+Criar O Projeto React Com Vite
+
+Executamos o comando:
+
+npm create vite@latest . -- --template react
+
+Explicação do comando:
+
+npm create vite@latest - Cria um novo projeto usando a versão mais recente do Vite.
+
+. - O ponto significa: Criar o projeto nesta pasta atual
+
+--template react
+
+Endereço Do Aplicativo
+O app pode ser acessado pelo navegador em:
+
+http://localhost:5173/
+
+Explicação:
+localhost
+Significa “este próprio computador”.
+5173

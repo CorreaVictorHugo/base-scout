@@ -1,0 +1,40 @@
+versão 1 
+
+- Login
+- Dashboard simples
+- Cadastro de atletas
+- Lista de atletas
+- Edição e exclusão de atletas
+- Filtro por categoria/divisão
+- Busca por nome
+- Perfil individual do atleta
+- Área de documentos do atleta
+
+O projeto está localizado em:
+C:\Users\Victor Hugo\Documents\New project 2
+
+Tecnologias Escolhidas:
+
+React
+Vite
+npm
+
+
+React
+
+React é a biblioteca que vamos usar para construir as telas do sistema.
+Exemplos de telas:
+Tela de login
+Tela de atletas
+Tela de cadastro
+Tela de perfil
+Tela de documentos
+
+Vite
+
+Vite é uma ferramenta que cria e executa projetos React de forma rápida.
+Ele ajuda a:
+Criar a estrutura inicial do projeto
+Rodar o projeto no navegador
+Atualizar a tela automaticamente enquanto desenvolvemos
+
