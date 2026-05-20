@@ -1,0 +1,21 @@
+{
+  "name": "Base Scout",
+  "short_name": "Base Scout",
+  "description": "Gestao de atletas e documentos para equipes de futsal.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f4f7f5",
+  "theme_color": "#1f7a4d",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["sports", "productivity"],
+  "lang": "pt-BR"
+}
