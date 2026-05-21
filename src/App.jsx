@@ -176,6 +176,9 @@ function App() {
   const [modoRecuperacaoSenha, setModoRecuperacaoSenha] = useState(false)
   const [novaSenha, setNovaSenha] = useState('')
   const [confirmacaoNovaSenha, setConfirmacaoNovaSenha] = useState('')
+  const [mostrarSenhaLogin, setMostrarSenhaLogin] = useState(false)
+  const [mostrarNovaSenha, setMostrarNovaSenha] = useState(false)
+  const [mostrarConfirmacaoSenha, setMostrarConfirmacaoSenha] = useState(false)
   const [mensagemLogin, setMensagemLogin] = useState('')
   const [mensagemGlobal, setMensagemGlobal] = useState(null)
   const [atletas, setAtletas] = useState(atletasIniciais)
@@ -915,30 +918,43 @@ function App() {
             <form className="formulario-login" onSubmit={atualizarSenha}>
               <label>
                 <span>Nova senha</span>
-                <input
-                  type="password"
-                  placeholder="Nova senha"
-                  value={novaSenha}
-                  onChange={(event) => {
-                    setNovaSenha(event.target.value)
-                    setErroLogin('')
-                  }}
-                  required
-                />
+                <div className="campo-senha">
+                  <input
+                    type={mostrarNovaSenha ? 'text' : 'password'}
+                    placeholder="Nova senha"
+                    value={novaSenha}
+                    onChange={(event) => {
+                      setNovaSenha(event.target.value)
+                      setErroLogin('')
+                    }}
+                    required
+                  />
+                  <button type="button" onClick={() => setMostrarNovaSenha(!mostrarNovaSenha)}>
+                    {mostrarNovaSenha ? 'Ocultar' : 'Mostrar'}
+                  </button>
+                </div>
               </label>
 
               <label>
                 <span>Confirmar nova senha</span>
-                <input
-                  type="password"
-                  placeholder="Repita a nova senha"
-                  value={confirmacaoNovaSenha}
-                  onChange={(event) => {
-                    setConfirmacaoNovaSenha(event.target.value)
-                    setErroLogin('')
-                  }}
-                  required
-                />
+                <div className="campo-senha">
+                  <input
+                    type={mostrarConfirmacaoSenha ? 'text' : 'password'}
+                    placeholder="Repita a nova senha"
+                    value={confirmacaoNovaSenha}
+                    onChange={(event) => {
+                      setConfirmacaoNovaSenha(event.target.value)
+                      setErroLogin('')
+                    }}
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setMostrarConfirmacaoSenha(!mostrarConfirmacaoSenha)}
+                  >
+                    {mostrarConfirmacaoSenha ? 'Ocultar' : 'Mostrar'}
+                  </button>
+                </div>
               </label>
 
               {erroLogin && <p className="mensagem-erro-login">{erroLogin}</p>}
@@ -965,17 +981,22 @@ function App() {
 
               <label>
                 <span>Senha</span>
-                <input
-                  type="password"
-                  placeholder="Sua senha"
-                  value={senhaLogin}
-                  onChange={(event) => {
-                    setSenhaLogin(event.target.value)
-                    setErroLogin('')
-                    setMensagemLogin('')
-                  }}
-                  required
-                />
+                <div className="campo-senha">
+                  <input
+                    type={mostrarSenhaLogin ? 'text' : 'password'}
+                    placeholder="Sua senha"
+                    value={senhaLogin}
+                    onChange={(event) => {
+                      setSenhaLogin(event.target.value)
+                      setErroLogin('')
+                      setMensagemLogin('')
+                    }}
+                    required
+                  />
+                  <button type="button" onClick={() => setMostrarSenhaLogin(!mostrarSenhaLogin)}>
+                    {mostrarSenhaLogin ? 'Ocultar' : 'Mostrar'}
+                  </button>
+                </div>
               </label>
 
               {erroLogin && <p className="mensagem-erro-login">{erroLogin}</p>}
