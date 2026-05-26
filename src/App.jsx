@@ -5,12 +5,20 @@ import { supabase } from './lib/supabase'
 const atletasIniciais = []
 
 const categorias = [
+  { nome: 'Sub-06', cor: 'verde' },
   { nome: 'Sub-07', cor: 'verde' },
+  { nome: 'Sub-08', cor: 'azul' },
   { nome: 'Sub-09', cor: 'azul' },
+  { nome: 'Sub-10', cor: 'roxo' },
   { nome: 'Sub-11', cor: 'roxo' },
+  { nome: 'Sub-12', cor: 'amarelo' },
   { nome: 'Sub-13', cor: 'amarelo' },
+  { nome: 'Sub-14', cor: 'vermelho' },
   { nome: 'Sub-15', cor: 'vermelho' },
+  { nome: 'Sub-16', cor: 'anil' },
   { nome: 'Sub-17', cor: 'anil' },
+  { nome: 'Sub-18', cor: 'turquesa' },
+  { nome: 'Sub-19', cor: 'turquesa' },
   { nome: 'Sub-20', cor: 'turquesa' },
 ]
 
