@@ -25,5 +25,8 @@
   .demo-app .menu a { white-space: nowrap; }
 }
 @media (max-width: 520px) {
+  .demo-app .menu { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); overflow: visible; }
+  .demo-app .menu button { min-width: 0; padding: 8px 4px; font-size: 12px; }
+  .demo-app .menu a { grid-column: 1 / -1; padding: 6px; text-align: center; }
   .demo-perfil-card { align-items: flex-start; flex-direction: column; padding: 20px; }
 }
