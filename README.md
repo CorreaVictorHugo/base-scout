@@ -1,16 +1,45 @@
-# React + Vite
+# Base Scout
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação para organizar atletas de categorias de base, com dashboard, filtros, perfis e documentos. Desenvolvida em React, Vite e Supabase.
 
-Currently, two official plugins are available:
+**[Explorar demonstração pública](https://base-scout-sigma.vercel.app/?demo=1)** · [Acesso da equipe](https://base-scout-sigma.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Demonstração de portfólio
 
-## React Compiler
+A demonstração permite navegar pelo dashboard, categorias, lista com busca e filtros e perfis resumidos. Usa exclusivamente registros fictícios incluídos no código. Não consulta o Supabase, não solicita documentos e não permite criar ou alterar cadastros.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+O ambiente administrativo é separado e exige conta autorizada. Atualmente, o projeto Supabase associado está inativo; por isso, o funcionamento da área administrativa e suas políticas de acesso precisam ser verificados antes do uso real.
 
-## Expanding the ESLint configuration
+## Recursos do aplicativo
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Login e recuperação de senha com Supabase Auth.
+- Indicadores e listagem por categoria e posição.
+- Cadastro e edição de atletas, fotos e documentos na área restrita.
+- Interface responsiva e instalável como aplicativo web.
+
+## Executar localmente
+
+Requer Node.js compatível com a versão do Vite definida em `package.json` e um projeto Supabase configurado.
+
+```bash
+npm ci
+cp .env.example .env.local
+npm run dev
+```
+
+Preencha em `.env.local` a URL e a **chave publicável** do seu projeto Supabase. Essas variáveis são expostas ao navegador; nunca coloque `service_role`, chave secreta ou senha de banco nelas. O arquivo local não deve ser versionado.
+
+Para testar a demonstração sem Supabase, abra `http://localhost:5173/?demo=1` após iniciar o servidor. Para verificar o código:
+
+```bash
+npm run lint
+npm run build
+```
+
+## Segurança e privacidade
+
+O cadastro inclui informações pessoais de atletas e responsáveis. Antes de usar com pessoas reais, confirme RLS, permissões das tabelas e políticas dos buckets no Supabase; também revise o acesso a fotos e documentos. A tela de login por si só não protege a API. Não use registros reais em screenshots públicos.
+
+## Autor
+
+Desenvolvido por [Victor Hugo Corrêa](https://github.com/CorreaVictorHugo).

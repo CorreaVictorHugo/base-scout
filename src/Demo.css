@@ -1,0 +1,29 @@
+.demo-app { color: #07130f; }
+.demo-app :focus-visible, .acesso-demo a:focus-visible { outline: 3px solid #17613c; outline-offset: 3px; }
+.demo-app ::selection { background: #bdebd2; color: #07130f; }
+.demo-skip { position: absolute; z-index: 10; top: -60px; left: 16px; padding: 10px 14px; background: #fff; color: #07130f; }
+.demo-skip:focus { top: 12px; }
+.demo-app .menu a { border-radius: 8px; color: #17613c; font-size: 14px; font-weight: 800; padding: 10px 14px; text-decoration: none; }
+.demo-app .menu a:hover { background: #e1f1ea; }
+.demo-banner { display: flex; justify-content: center; align-items: center; gap: 12px; padding: 11px 20px; background: #e1f1ea; border-bottom: 1px solid #a8d6bb; color: #174b32; font-size: 13px; }
+.demo-banner strong { white-space: nowrap; }
+.demo-total { color: #315747; font-size: 14px; font-weight: 700; }
+.demo-app .card-dashboard { min-height: 310px; }
+.demo-perfil { display: grid; gap: 20px; }
+.demo-perfil > .botao-link { justify-self: start; }
+.demo-perfil-card { display: flex; align-items: center; gap: 22px; padding: 28px; background: #fff; border: 1px solid #dce5df; border-radius: 10px; }
+.demo-perfil-card .foto-atleta { flex: 0 0 86px; }
+.demo-perfil-card h1 { margin: 0 0 8px; font-size: 28px; }
+.demo-perfil-card p { margin: 0 0 14px; color: #4e695b; }
+.acesso-demo { display: grid; gap: 8px; margin-top: 22px; padding-top: 20px; border-top: 1px solid #dce5df; text-align: center; }
+.acesso-demo span { color: #315747; font-size: 13px; }
+.acesso-demo a { display: block; padding: 10px 16px; border: 1px solid #1f7a4d; border-radius: 8px; color: #17613c; font-weight: 800; text-decoration: none; }
+.acesso-demo a:hover { background: #e1f1ea; }
+.acesso-demo small { color: #4e695b; font-size: 11px; }
+@media (max-width: 860px) {
+  .demo-banner { align-items: flex-start; flex-direction: column; gap: 3px; }
+  .demo-app .menu a { white-space: nowrap; }
+}
+@media (max-width: 520px) {
+  .demo-perfil-card { align-items: flex-start; flex-direction: column; padding: 20px; }
+}

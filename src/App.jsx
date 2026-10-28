@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import './App.css'
+import './Demo.css'
 import { supabase } from './lib/supabase'
 
 const atletasIniciais = []
@@ -174,6 +175,10 @@ function limparNomeArquivo(nome) {
     .toLowerCase()
 }
 
+function nomeArquivoUnico(idReferencia, nome) {
+  return `${idReferencia}-${Date.now()}-${limparNomeArquivo(nome)}`
+}
+
 function App() {
   const [sessao, setSessao] = useState(null)
   const [carregandoSessao, setCarregandoSessao] = useState(true)
@@ -218,6 +223,12 @@ function App() {
 
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
       setSessao(session)
+      setCarregandoAtletas(Boolean(session))
+
+      if (!session) {
+        setAtletas([])
+        setDocumentosPorAtleta({})
+      }
 
       if (event === 'PASSWORD_RECOVERY') {
         setModoRecuperacaoSenha(true)
@@ -230,30 +241,22 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (sessao) {
-      carregarAtletas()
-    } else {
-      setAtletas([])
-    }
+    if (!sessao) return
+
+    let ativo = true
+    supabase.from('atletas').select('*').order('created_at', { ascending: false })
+      .then(({ data, error }) => {
+        if (!ativo) return
+        if (error) {
+          setMensagemGlobal({ tipo: 'erro', texto: `Erro ao carregar atletas: ${error.message}` })
+        } else {
+          setAtletas(data.map(atletaDoBanco))
+        }
+        setCarregandoAtletas(false)
+      })
+
+    return () => { ativo = false }
   }, [sessao])
-
-  async function carregarAtletas() {
-    setCarregandoAtletas(true)
-
-    const { data, error } = await supabase
-      .from('atletas')
-      .select('*')
-      .order('created_at', { ascending: false })
-
-    if (error) {
-      mostrarMensagem('erro', `Erro ao carregar atletas: ${error.message}`)
-      setCarregandoAtletas(false)
-      return
-    }
-
-    setAtletas(data.map(atletaDoBanco))
-    setCarregandoAtletas(false)
-  }
 
   async function documentoDoBanco(linha) {
     let url = linha.arquivo_url || ''
@@ -416,12 +419,6 @@ function App() {
   const atletaSelecionado = atletas.find((atleta) => atleta.id === atletaSelecionadoId)
   const documentosDoAtleta = documentosPorAtleta[atletaSelecionadoId] || []
 
-  useEffect(() => {
-    if (telaAtual === 'perfil' && atletaSelecionadoId) {
-      carregarDocumentosDoAtleta(atletaSelecionadoId)
-    }
-  }, [telaAtual, atletaSelecionadoId])
-
   function abrirTela(nomeTela) {
     setTelaAtual(nomeTela)
   }
@@ -482,7 +479,7 @@ function App() {
       return formulario.foto
     }
 
-    const nomeArquivo = `${idReferencia}-${Date.now()}-${limparNomeArquivo(formulario.fotoArquivo.name)}`
+    const nomeArquivo = nomeArquivoUnico(idReferencia, formulario.fotoArquivo.name)
     const caminhoArquivo = `atletas/${nomeArquivo}`
 
     const { error } = await supabase.storage
@@ -509,7 +506,7 @@ function App() {
       return formulario[campoUrlAtual]
     }
 
-    const nomeArquivo = `${idReferencia}-${Date.now()}-${limparNomeArquivo(arquivo.name)}`
+    const nomeArquivo = nomeArquivoUnico(idReferencia, arquivo.name)
     const caminhoArquivo = `cadastro/${idReferencia}/${nomeArquivo}`
 
     const { error } = await supabase.storage
@@ -571,7 +568,7 @@ function App() {
     }
 
     const idade = calcularIdade(formulario.dataNascimento)
-    let fotoUrl = formulario.foto
+    let fotoUrl
 
     try {
       fotoUrl = await uploadFotoAtleta(formulario.id || 'novo')
@@ -709,6 +706,7 @@ function App() {
   function verAtleta(atleta) {
     setAtletaSelecionadoId(atleta.id)
     setTelaAtual('perfil')
+    carregarDocumentosDoAtleta(atleta.id)
   }
 
   function abrirCategoria(categoria) {
@@ -738,7 +736,8 @@ function App() {
 
     setAtletas(atletas.filter((atleta) => atleta.id !== id))
     setDocumentosPorAtleta((documentosAtuais) => {
-      const { [id]: documentosRemovidos, ...documentosRestantes } = documentosAtuais
+      const documentosRestantes = { ...documentosAtuais }
+      delete documentosRestantes[id]
       return documentosRestantes
     })
     mostrarMensagem('sucesso', 'Atleta excluido com sucesso.')
@@ -772,7 +771,7 @@ function App() {
       return
     }
 
-    const nomeArquivo = `${atletaSelecionado.id}-${Date.now()}-${limparNomeArquivo(documento.arquivo.name)}`
+    const nomeArquivo = nomeArquivoUnico(atletaSelecionado.id, documento.arquivo.name)
     const caminhoArquivo = `perfil/${atletaSelecionado.id}/${nomeArquivo}`
 
     const { error: uploadError } = await supabase.storage
@@ -1018,6 +1017,13 @@ function App() {
                 Esqueci minha senha
               </button>
             </form>
+          )}
+          {!modoRecuperacaoSenha && (
+            <div className="acesso-demo">
+              <span>Quer conhecer o projeto sem uma conta?</span>
+              <a href="/?demo=1">Explorar demonstração</a>
+              <small>Dados fictícios. Nenhuma informação de atletas reais é carregada.</small>
+            </div>
           )}
         </section>
       </main>

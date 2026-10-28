@@ -1,4 +1,4 @@
-const CACHE_NAME = 'base-scout-v1'
+const CACHE_NAME = 'base-scout-v2'
 const APP_SHELL = ['/', '/manifest.webmanifest', '/favicon.svg']
 
 self.addEventListener('install', (event) => {
@@ -26,7 +26,7 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   const requestUrl = new URL(event.request.url)
 
-  if (requestUrl.hostname.includes('supabase.co')) {
+  if (requestUrl.origin !== self.location.origin) {
     return
   }
 
